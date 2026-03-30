@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Tiendas de Ropa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #9C27B0;
+            --secondary-color: #673AB7;
+            --accent-color: #E91E63;
+            --light-color: #F9F7FD;
+            --dark-color: #333333;
+            --text-color: #4A4A4A;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Estilos para el encabezado */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 i {
+            margin-right: 10px;
+        }
+
+        .back-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Estilos para las tarjetas de tiendas */
+        .store-list {
+            padding: 40px 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .store-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .store-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .store-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        .store-name {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Estilos para la vista detallada de la tienda */
+        .store-detail {
+            display: none;
+            padding: 40px 0;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-to-list {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .back-to-list:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(-5px);
+        }
+
+        .back-to-list i {
+            margin-right: 8px;
+        }
+
+        /* Galería automática */
+        .auto-gallery {
+            margin-bottom: 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .gallery-slide {
+            display: none;
+            position: relative;
+        }
+
+        .gallery-slide.active {
+            display: block;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+
+        .gallery-btn {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .gallery-btn:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        /* Información de la tienda */
+        .store-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .store-info h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .info-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #F5F0FF, #EDE7F6);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h3 i {
+            margin-right: 10px;
+        }
+
+        /* Galería de prendas */
+        .clothes-gallery {
+            margin-top: 30px;
+        }
+
+        .clothes-gallery h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .clothes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .clothes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .clothes-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .clothes-item:hover {
+            transform: scale(1.05);
+        }
+
+        .clothes-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Modal para ver imágenes */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+
+        .modal-nav-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Etiqueta de tipo de ropa */
+        .clothing-type {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container header-container">
+            <h1><i class="fas fa-tshirt"></i> Moda en la Ciudad</h1>
+            <a href="../index.html#prendas" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+    </header>
+
+    <!-- Lista de tiendas (vista principal) -->
+    <section class="store-list" id="storeList">
+        <div class="container">
+            <h2 style="margin-bottom: 30px; color: var(--primary-color); text-align: center;">Descubre las mejores tiendas de moda</h2>
+            
+            <div class="grid-container" id="storesGrid">
+                <!-- Las tarjetas de tiendas se generarán con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Vista detallada de la tienda (oculta inicialmente) -->
+    <section class="store-detail" id="storeDetail">
+        <div class="container">
+            <!-- Encabezado de la vista detallada -->
+            <div class="detail-header">
+                <h2 id="detailStoreName">Nombre de la Tienda</h2>
+                <button class="back-to-list" id="backToList">
+                    <i class="fas fa-arrow-left"></i> Volver al catálogo
+                </button>
+            </div>
+
+            <!-- Galería automática -->
+            <div class="auto-gallery" id="autoGallery">
+                <!-- Las imágenes se generarán con JavaScript -->
+                <div class="gallery-nav">
+                    <button class="gallery-btn" id="prevGalleryBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="gallery-btn" id="nextGalleryBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="gallery-dots" id="galleryDots">
+                    <!-- Los puntos se generarán con JavaScript -->
+                </div>
+            </div>
+
+            <!-- Información de la tienda -->
+            <div class="store-info">
+                <h2>Acerca de nosotros</h2>
+                <p id="storeDescription">Descripción de la tienda...</p>
+                
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3><i class="fas fa-clock"></i> Horario de atención</h3>
+                        <p id="storeSchedule">Horario de trabajo...</p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+                        <p id="storeLocation">Ubicación de la tienda...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galería de prendas -->
+            <div class="clothes-gallery">
+                <h2>Prendas destacadas</h2>
+                <div class="clothes-grid" id="clothesGrid">
+                    <!-- Las imágenes de prendas se generarán con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para ver imágenes -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <img class="modal-img" id="modalImage" src="" alt="Imagen ampliada">
+            <div class="modal-nav">
+                <button class="modal-nav-btn" id="prevModalBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="modal-nav-btn" id="nextModalBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-tshirt"></i>
+            </div>
+            <p>Descubre las últimas tendencias de moda en nuestra ciudad. Todos los derechos reservados &copy; 2023</p>
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Datos de las tiendas de ropa
+        const stores = [
+            {
+                id: 1,
+                name: "Boutique Elegance",
+                image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Boutique de lujo especializada en vestidos de noche y trajes de gala. Ofrecemos asesoramiento personalizado para que encuentres el outfit perfecto para cualquier ocasión especial.",
+                schedule: "Lunes a Sábado: 10:00 am - 8:00 pm<br>Domingo: 11:00 am - 6:00 pm",
+                location: "Centro Comercial Galerías, Local 15",
+                type: "Ropa formal y de gala",
+                gallery: [
+                    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                        type: "Vestido de noche"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                        type: "Traje formal"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Conjunto elegante"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Vestido de fiesta"
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: "Malinaboutique",
+                image: "https://images.unsplash.com/photo-1558769132-cb1a40ed0ada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Malina Boutique ofrece una selección actualizada de moda para damas, caballeros y niños en el corazón de la comunidad. El establecimiento se especializa en ropa casual, conjuntos modernos, calzado y accesorios, exhibidos en un espacio cómodo y climatizado para brindar una mejor experiencia de compra. Con una atención enfocada en las tendencias actuales, consolidándose como una opción práctica y accesible para renovar el guardarropa familiar.",
+                schedule: "Lunes a sábado de 10:00 a. m. a 5:00 p. m., domingos de 10:00 a. m. a 1:00 p. m.",
+                location: "Calle Moda 234, Distrito Urbano",
+                type: "Ropa urbana y streetwear",
+                gallery: [
+                    "https://images.unsplash.com/photo-1558769132-cb1a40ed0ada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                    "https://images.unsplash.com/photo-1583484963886-cfe2bff2945f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1558769132-cb1a40ed0ada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Hoodie exclusivo"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                        type: "Sneakers limitados"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1583484963886-cfe2bff2945f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Chaqueta urbana"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Pantalón cargo"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: "Casual Comfort",
+                image: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Ropa casual y cómoda para el día a día. Desde jeans hasta sudaderas, ofrecemos prendas de calidad que combinan estilo y confort.",
+                schedule: "Lunes a Sábado: 9:00 am - 7:00 pm<br>Domingo: 10:00 am - 5:00 pm",
+                location: "Centro Comercial Plaza Central, Local 42",
+                type: "Ropa casual",
+                gallery: [
+                    "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80",
+                    "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Jeans clásicos"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80",
+                        type: "Camiseta básica"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+                        type: "Sudadera cómoda"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Vestido casual"
+                    }
+                ]
+            },
+            {
+                id: 4,
+                name: "Sport Active",
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Tienda especializada en ropa deportiva y accesorios para entrenamiento. Marcas líderes en el mercado y tecnología de última generación para mejorar tu rendimiento.",
+                schedule: "Lunes a Viernes: 8:00 am - 9:00 pm<br>Sábados y Domingos: 9:00 am - 8:00 pm",
+                location: "Centro Deportivo Municipal, Local 8",
+                type: "Ropa deportiva",
+                gallery: [
+                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1595433562696-a87b7b4b1b7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1520256862855-398228c41684?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Zapatillas deportivas"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1595433562696-a87b7b4b1b7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Leggings deportivos"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1520256862855-398228c41684?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+                        type: "Top deportivo"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Chaqueta deportiva"
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: "Moda Sostenible",
+                image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Tienda de moda ecológica con prendas fabricadas con materiales sostenibles y procesos de producción responsables. Moda con conciencia ambiental.",
+                schedule: "Martes a Sábado: 10:00 am - 7:00 pm<br>Domingo y Lunes: Cerrado",
+                location: "Calle Ecológica 123, Barrio Verde",
+                type: "Ropa sostenible",
+                gallery: [
+                    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+                    "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Vestido ecológico"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+                        type: "Sudadera orgánica"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80",
+                        type: "Camiseta sostenible"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Falda reciclada"
+                    }
+                ]
+            },
+            {
+                id: 6,
+                name: "Accesorios Únicos",
+                image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                description: "Tienda especializada en accesorios de moda: joyería, bolsos, cinturones y más. Piezas únicas de diseñadores locales e internacionales.",
+                schedule: "Lunes a Sábado: 10:30 am - 8:30 pm<br>Domingo: 12:00 pm - 6:00 pm",
+                location: "Pasaje de los Accesorios 56, Centro Histórico",
+                type: "Accesorios de moda",
+                gallery: [
+                    "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                    "https://images.unsplash.com/photo-1590649887896-6c8e6668407f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                        type: "Collar artesanal"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1590649887896-6c8e6668407f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Bolso de diseñador"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Anillos exclusivos"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                        type: "Cinturón de cuero"
+                    }
+                ]
+            },
+            // Agregando más tiendas para completar 14
+            {
+                id: 7,
+                name: "Ropa Infantil Color",
+                image: "https://images.unsplash.com/photo-1594736797933-d0c6e4d6d6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Ropa divertida y colorida para niños y niñas de todas las edades. Prendas cómodas, seguras y con diseños alegres que los más pequeños adorarán.",
+                schedule: "Lunes a Sábado: 9:00 am - 7:00 pm<br>Domingo: 10:00 am - 5:00 pm",
+                location: "Centro Comercial Familia, Local 22",
+                type: "Ropa infantil",
+                gallery: [
+                    "https://images.unsplash.com/photo-1594736797933-d0c6e4d6d6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1558769132-cb1a40ed0ada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1594736797933-d0c6e4d6d6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Vestido infantil"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1558769132-cb1a40ed0ada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Conjunto niño"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                        type: "Pijama infantil"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Ropa de bebé"
+                    }
+                ]
+            },
+            {
+                id: 8,
+                name: "Trajes a Medida",
+                image: "https://images.unsplash.com/photo-1594736797933-d0c6e4d6d6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Sastrería especializada en trajes a medida para hombres y mujeres. Telas de la más alta calidad y confección personalizada para un ajuste perfecto.",
+                schedule: "Lunes a Viernes: 9:00 am - 6:00 pm<br>Sábado: 10:00 am - 2:00 pm<br>Domingo: Cerrado",
+                location: "Avenida Elegancia 789, Zona Financiera",
+                type: "Trajes a medida",
+                gallery: [
+                    "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                    "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                        type: "Traje masculino"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                        type: "Traje femenino"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Blazer a medida"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Vestido formal"
+                    }
+                ]
+            },
+            {
+                id: 9,
+                name: "Denim Factory",
+                image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Especialistas en ropa de denim: jeans, chaquetas, faldas y más. Ofrecemos una amplia variedad de cortes, lavados y estilos para todos los gustos.",
+                schedule: "Lunes a Sábado: 10:00 am - 8:00 pm<br>Domingo: 11:00 am - 6:00 pm",
+                location: "Calle Denim 456, Distrito Industrial",
+                type: "Ropa de denim",
+                gallery: [
+                    "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Jeans ajustados"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Chaqueta denim"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80",
+                        type: "Falda de mezclilla"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Overol denim"
+                    }
+                ]
+            },
+            {
+                id: 10,
+                name: "Ropa de Playa",
+                image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+                description: "Todo lo que necesitas para la playa: trajes de baño, pareos, sombreros y ropa ligera para disfrutar del verano con estilo.",
+                schedule: "Lunes a Domingo: 9:00 am - 7:00 pm",
+                location: "Avenida Costera 123, Zona Turística",
+                type: "Ropa de playa",
+                gallery: [
+                    "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+                    "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+                        type: "Traje de baño"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Pareo estampado"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Vestido playero"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                        type: "Sombrero de playa"
+                    }
+                ]
+            },
+            {
+                id: 11,
+                name: "Outlet Moda",
+                image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80",
+                description: "Tienda outlet con las mejores marcas a precios increíbles. Encuentra ropa, calzado y accesorios de temporadas anteriores con descuentos de hasta el 70%.",
+                schedule: "Lunes a Sábado: 10:00 am - 8:00 pm<br>Domingo: 11:00 am - 7:00 pm",
+                location: "Centro Outlet Moda, Local 5",
+                type: "Ropa de outlet",
+                gallery: [
+                    "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80",
+                    "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80",
+                        type: "Camisetas con descuento"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Jeans en oferta"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+                        type: "Vestidos a mitad de precio"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Zapatos en liquidación"
+                    }
+                ]
+            },
+            {
+                id: 12,
+                name: "Lencería Fina",
+                image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                description: "Lencería de alta calidad con las mejores telas y diseños exclusivos. Desde prendas básicas hasta conjuntos especiales para ocasiones únicas.",
+                schedule: "Lunes a Sábado: 10:00 am - 7:00 pm<br>Domingo: 11:00 am - 5:00 pm",
+                location: "Galería Íntima, Local 12",
+                type: "Lencería",
+                gallery: [
+                    "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                    "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                    "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Conjunto de encaje"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                        type: "Pijama de seda"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                        type: "Bata elegante"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Ropa interior básica"
+                    }
+                ]
+            },
+            {
+                id: 13,
+                name: "Moda Vintage",
+                image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                description: "Tienda especializada en ropa vintage y de segunda mano seleccionada. Encuentra piezas únicas de décadas pasadas con historia y estilo.",
+                schedule: "Miércoles a Domingo: 11:00 am - 7:00 pm<br>Lunes y Martes: Cerrado",
+                location: "Mercado de las Pulgas, Stand 45",
+                type: "Ropa vintage",
+                gallery: [
+                    "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                        type: "Vestido años 60"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Chaqueta retro"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Blusa vintage"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                        type: "Pantalón retro"
+                    }
+                ]
+            },
+            {
+                id: 14,
+                name: "Alta Costura",
+                image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Casa de moda especializada en alta costura y diseños exclusivos. Creaciones únicas para clientes exigentes que buscan piezas irrepetibles.",
+                schedule: "Con cita previa solamente",
+                location: "Calle Exclusiva 789, Zona VIP",
+                type: "Alta costura",
+                gallery: [
+                    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                    "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                    "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                ],
+                clothes: [
+                    {
+                        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        type: "Vestido de alta costura"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                        type: "Traje exclusivo"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                        type: "Abrigo de diseñador"
+                    },
+                    {
+                        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                        type: "Conjunto de gala"
+                    }
+                ]
+            }
+        ];
+
+        // Variables globales
+        let currentStoreIndex = 0;
+        let currentGalleryIndex = 0;
+        let currentModalGallery = [];
+        let currentModalIndex = 0;
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generar las tarjetas de tiendas
+            generateStoreCards();
+            
+            // Configurar eventos
+            setupEventListeners();
+            
+            // Iniciar galería automática
+            startAutoGallery();
+        });
+
+        // Generar las tarjetas de tiendas
+        function generateStoreCards() {
+            const grid = document.getElementById('storesGrid');
+            
+            stores.forEach((store, index) => {
+                const card = document.createElement('div');
+                card.className = 'store-card';
+                card.dataset.id = store.id;
+                
+                card.innerHTML = `
+                    <img src="${store.image}" alt="${store.name}" class="store-img">
+                    <div class="store-name">${store.name}</div>
+                `;
+                
+                card.addEventListener('click', () => showStoreDetail(index));
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Botón para volver al catálogo
+            document.getElementById('backToList').addEventListener('click', showStoreList);
+            
+            // Botones de la galería automática
+            document.getElementById('prevGalleryBtn').addEventListener('click', prevGallerySlide);
+            document.getElementById('nextGalleryBtn').addEventListener('click', nextGallerySlide);
+            
+            // Botones del modal
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            document.getElementById('prevModalBtn').addEventListener('click', prevModalImage);
+            document.getElementById('nextModalBtn').addEventListener('click', nextModalImage);
+            
+            // Cerrar modal al hacer clic fuera de la imagen
+            document.getElementById('imageModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Mostrar la vista detallada de la tienda
+        function showStoreDetail(index) {
+            // Guardar el índice de la tienda actual
+            currentStoreIndex = index;
+            const store = stores[index];
+            
+            // Desplazar la página hacia arriba antes de cambiar la vista
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Ocultar lista y mostrar detalle
+            document.getElementById('storeList').style.display = 'none';
+            document.getElementById('storeDetail').style.display = 'block';
+            
+            // Actualizar información de la tienda
+            document.getElementById('detailStoreName').textContent = store.name;
+            document.getElementById('storeDescription').textContent = store.description;
+            document.getElementById('storeSchedule').innerHTML = store.schedule;
+            document.getElementById('storeLocation').textContent = store.location;
+            
+            // Generar galería automática
+            generateAutoGallery(store.gallery);
+            
+            // Generar galería de prendas
+            generateClothesGallery(store.clothes);
+            
+            // Desplazar nuevamente hacia arriba para asegurar que estemos en la parte superior
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 50);
+        }
+
+        // Mostrar la lista de tiendas
+        function showStoreList() {
+            // Ocultar detalle y mostrar lista
+            document.getElementById('storeDetail').style.display = 'none';
+            document.getElementById('storeList').style.display = 'block';
+            
+            // Desplazar hacia arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Generar galería automática
+        function generateAutoGallery(images) {
+            const autoGallery = document.getElementById('autoGallery');
+            const dotsContainer = document.getElementById('galleryDots');
+            
+            // Limpiar galería actual (excepto los botones de navegación)
+            const existingSlides = autoGallery.querySelectorAll('.gallery-slide');
+            existingSlides.forEach(slide => slide.remove());
+            
+            dotsContainer.innerHTML = '';
+            
+            // Crear nuevos slides
+            images.forEach((image, index) => {
+                const slide = document.createElement('div');
+                slide.className = index === 0 ? 'gallery-slide active' : 'gallery-slide';
+                slide.innerHTML = `<img src="${image}" alt="Imagen de la tienda" class="gallery-img" data-gallery-index="${index}">`;
+                
+                // Agregar evento para abrir modal
+                slide.querySelector('.gallery-img').addEventListener('click', () => {
+                    openModal(images, index);
+                });
+                
+                // Insertar antes de los botones de navegación
+                autoGallery.insertBefore(slide, autoGallery.querySelector('.gallery-nav'));
+                
+                // Crear puntos de navegación
+                const dot = document.createElement('div');
+                dot.className = index === 0 ? 'dot active' : 'dot';
+                dot.dataset.index = index;
+                dot.addEventListener('click', () => changeGallerySlide(index));
+                dotsContainer.appendChild(dot);
+            });
+            
+            // Reiniciar índice
+            currentGalleryIndex = 0;
+        }
+
+        // Generar galería de prendas
+        function generateClothesGallery(clothes) {
+            const clothesGrid = document.getElementById('clothesGrid');
+            
+            // Limpiar galería actual
+            clothesGrid.innerHTML = '';
+            
+            // Crear nuevas imágenes
+            clothes.forEach((item, index) => {
+                const clothesItem = document.createElement('div');
+                clothesItem.className = 'clothes-item';
+                clothesItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.type}" class="clothes-img" data-clothes-index="${index}">
+                `;
+                
+                // Agregar evento para abrir modal
+                clothesItem.addEventListener('click', () => {
+                    const images = clothes.map(c => c.image);
+                    openModal(images, index);
+                });
+                
+                clothesGrid.appendChild(clothesItem);
+            });
+        }
+
+        // Cambiar slide de la galería automática
+        function changeGallerySlide(index) {
+            const slides = document.querySelectorAll('.gallery-slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            // Remover clase activa de todos los slides y dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Agregar clase activa al slide y dot seleccionados
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            // Actualizar índice actual
+            currentGalleryIndex = index;
+        }
+
+        // Slide anterior de la galería automática
+        function prevGallerySlide() {
+            const slides = document.querySelectorAll('.gallery-slide');
+            let newIndex = currentGalleryIndex - 1;
+            
+            if (newIndex < 0) {
+                newIndex = slides.length - 1;
+            }
+            
+            changeGallerySlide(newIndex);
+        }
+
+        // Siguiente slide de la galería automática
+        function nextGallerySlide() {
+            const slides = document.querySelectorAll('.gallery-slide');
+            let newIndex = currentGalleryIndex + 1;
+            
+            if (newIndex >= slides.length) {
+                newIndex = 0;
+            }
+            
+            changeGallerySlide(newIndex);
+        }
+
+        // Iniciar galería automática (cambia automáticamente cada 5 segundos)
+        function startAutoGallery() {
+            setInterval(() => {
+                if (document.getElementById('storeDetail').style.display === 'block') {
+                    nextGallerySlide();
+                }
+            }, 5000);
+        }
+
+        // Abrir modal con imagen
+        function openModal(images, index) {
+            currentModalGallery = images;
+            currentModalIndex = index;
+            
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            modalImage.src = images[index];
+            modal.classList.add('active');
+            
+            // Prevenir scroll del body
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            
+            // Restaurar scroll del body
+            document.body.style.overflow = 'auto';
+        }
+
+        // Imagen anterior en el modal
+        function prevModalImage() {
+            currentModalIndex--;
+            
+            if (currentModalIndex < 0) {
+                currentModalIndex = currentModalGallery.length - 1;
+            }
+            
+            document.getElementById('modalImage').src = currentModalGallery[currentModalIndex];
+        }
+
+        // Siguiente imagen en el modal
+        function nextModalImage() {
+            currentModalIndex++;
+            
+            if (currentModalIndex >= currentModalGallery.length) {
+                currentModalIndex = 0;
+            }
+            
+            document.getElementById('modalImage').src = currentModalGallery[currentModalIndex];
+        }
+
+        // Manejar navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('imageModal');
+            
+            if (modal.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'ArrowLeft') {
+                    prevModalImage();
+                } else if (e.key === 'ArrowRight') {
+                    nextModalImage();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

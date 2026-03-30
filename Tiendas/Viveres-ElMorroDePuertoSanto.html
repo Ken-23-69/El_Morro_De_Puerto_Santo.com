@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abastecimientos de El Morro de Puerto Santo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2a7a3e;
+            --primary-dark: #1e5c2e;
+            --primary-light: #4caf50;
+            --secondary-color: #ff9800;
+            --accent-color: #3f51b5;
+            --dark-color: #2c3e50;
+            --light-color: #f5f7fa;
+            --gray-color: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--dark-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .main-header {
+            background: linear-gradient(rgba(42, 122, 62, 0.9), rgba(30, 92, 46, 0.95)), 
+                        url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            padding: 2rem 0 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--white);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Informational Section */
+        .info-section {
+            padding: 3rem 0 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Category Filter */
+        .category-section {
+            padding: 1rem 0 2rem;
+            text-align: center;
+        }
+
+        .category-title {
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            background-color: var(--white);
+            color: var(--dark-color);
+            border: 2px solid var(--primary-light);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-btn:hover {
+            background-color: var(--primary-light);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .category-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .category-btn i {
+            font-size: 0.9rem;
+        }
+
+        /* Catalog Grid - 2 columnas fijas en móvil */
+        .catalog-section {
+            padding: 0 0 4rem;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Catalog Card */
+        .catalog-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            height: 180px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .catalog-card:hover .card-image img {
+            transform: scale(1.08);
+        }
+
+        .card-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-category {
+            display: inline-block;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(42, 122, 62, 0.2);
+            margin-top: 0.5rem;
+        }
+
+        /* Detail View */
+        .detail-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            z-index: 2000;
+            overflow-y: auto;
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .detail-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .detail-close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2001;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .detail-close-btn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Detail Header */
+        .detail-header {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .detail-header-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .detail-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+            z-index: 2;
+        }
+
+        .detail-header-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .detail-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        /* Detail Description */
+        .detail-description {
+            padding: 2.5rem 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .detail-description p {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            line-height: 1.8;
+        }
+
+        /* Info Cards */
+        .detail-info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 0 20px 2.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background-color: var(--light-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .info-card-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+
+        .info-card-title {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 0;
+        }
+
+        .info-card-content {
+            padding-left: 0.5rem;
+        }
+
+        .info-card-content p {
+            font-size: 1.05rem;
+            color: var(--dark-color);
+        }
+
+        /* Gallery Section - 2 columnas fijas en móvil */
+        .detail-gallery {
+            padding: 0 20px 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 180px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--white);
+            color: var(--dark-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 3001;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .lightbox-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+            z-index: 3002;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .lightbox-nav:hover {
+            background-color: var(--white);
+            color: var(--primary-dark);
+        }
+
+        .lightbox-nav.prev {
+            left: 15px;
+        }
+
+        .lightbox-nav.next {
+            right: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 3.5rem 0 2rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .detail-header h1 {
+                font-size: 2rem;
+            }
+            .detail-header {
+                height: 280px;
+            }
+            .catalog-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem;
+            }
+            .card-image {
+                height: 150px;
+            }
+            .card-content {
+                padding: 1rem;
+            }
+            .card-title {
+                font-size: 1.1rem;
+            }
+            .card-category {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.7rem;
+            }
+            .category-buttons {
+                gap: 0.5rem;
+            }
+            .category-btn {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.85rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.8rem;
+            }
+            .gallery-item {
+                height: 150px;
+            }
+            .detail-info-cards {
+                grid-template-columns: 1fr;
+            }
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            .lightbox-nav.prev {
+                left: 10px;
+            }
+            .lightbox-nav.next {
+                right: 10px;
+            }
+            .detail-close-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+                top: 15px;
+                right: 15px;
+            }
+            .back-button {
+                top: 15px;
+                left: 15px;
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .catalog-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.8rem;
+            }
+            .card-image {
+                height: 130px;
+            }
+            .card-title {
+                font-size: 1rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.7rem;
+            }
+            .gallery-item {
+                height: 130px;
+            }
+            .detail-header h1 {
+                font-size: 1.7rem;
+            }
+            .detail-header {
+                height: 220px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 992px) {
+            .catalog-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 993px) {
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media (min-width: 1200px) {
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        @media (max-width: 400px) {
+            .category-buttons {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+                -webkit-overflow-scrolling: touch;
+            }
+            .category-btn {
+                flex-shrink: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <a href="../index.html#viveres"><button class="back-button" id="backButton">
+            <i class="fas fa-arrow-left"></i>
+            Volver al Principal
+        </button></a>
+        <div class="header-content">
+            <h1>Abastecimientos de El Morro de Puerto Santo</h1>
+            <p>Descubre todos los comercios esenciales que hacen vibrar nuestra comunidad costera. Encuentra lo que necesitas, donde lo necesitas.</p>
+        </div>
+    </header>
+
+    <!-- Informational Section -->
+    <section class="info-section container">
+        <p>En esta página encontrarás un directorio completo de todas las tiendas de abastecimiento y servicios esenciales disponibles en El Morro de Puerto Santo. Desde víveres hasta ferreterías, todo lo que necesitas para tu día a día.</p>
+        <p>Explora las categorías o navega por todas las tiendas para encontrar exactamente lo que buscas.</p>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="category-section container">
+        <h3 class="category-title">Filtrar por Categoría</h3>
+        <div class="category-buttons" id="categoryButtons">
+            <!-- Category buttons will be dynamically generated here -->
+        </div>
+    </section>
+
+    <!-- Catalog Grid -->
+    <section class="catalog-section container">
+        <div class="catalog-grid" id="catalogGrid">
+            <!-- Cards will be dynamically generated here -->
+        </div>
+    </section>
+
+    <!-- Detail View -->
+    <div class="detail-view" id="detailView">
+        <div class="detail-close-btn" id="detailCloseBtn">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <div class="detail-container">
+            <!-- Detail Header -->
+            <div class="detail-header" id="detailHeader">
+                <img class="detail-header-image" id="detailHeaderImage" src="" alt="">
+                <div class="detail-header-overlay"></div>
+                <div class="detail-header-content">
+                    <h1 id="detailTitle">Nombre de la Tienda</h1>
+                </div>
+            </div>
+            
+            <!-- Detail Description -->
+            <div class="detail-description">
+                <p id="detailDescription">Descripción de la tienda aparecerá aquí.</p>
+            </div>
+            
+            <!-- Info Cards -->
+            <div class="detail-info-cards">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="info-card-title">Horario de Atención</h3>
+                    </div>
+                    <div class="info-card-content">
+                        <p id="detailHours">Horario aparecerá aquí</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="info-card-title">Ubicación</h3>
+                    </div>
+                    <div class="info-card-content">
+                        <p id="detailLocation">Ubicación aparecerá aquí</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Section -->
+            <div class="detail-gallery">
+                <h3 class="gallery-title">Galería del Local</h3>
+                <div class="gallery-grid" id="detailGallery">
+                    <!-- Gallery items will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <div class="lightbox-container">
+            <div class="lightbox-nav prev" id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            
+            <div class="lightbox-nav next" id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">Abastecimientos El Morro</div>
+            <p>Directorio completo de comercios y servicios en El Morro de Puerto Santo, Estado Sucre, Venezuela</p>
+            <p>© 2023 - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data for supply stores (originales 1-16 + 5 nuevas + 1 carpintería = 22)
+        const supplyStores = [
+            // originales 1-16
+            {
+                id: 1,
+                name: "Distribuidora Juliany",
+                category: "Víveres",
+                description: "Distribuidora Julianny se consolida como el centro de abastecimiento integral más completo de la zona, ofreciendo una amplia variedad de productos que abarcan desde carnicería y charcutería hasta víveres en general y artículos de cuidado personal y del hogar. El establecimiento destaca por su organización y frescura, brindando a la comunidad y a los visitantes una solución rápida y eficiente para sus compras diarias en un ambiente impecable.",
+                image: "assets/IMG/Tiendas/Destribuidora-1.jpg",
+                hours: "Lunes a Sábado: 8:00 AM - 1:00 PM y 4:00 PM - 7:30 PM | Domingos: 8:00 AM - 1:00 PM",
+                location: "Calle Principal",
+                gallery: [
+                    "assets/IMG/Tiendas/Destribuidora-2.jpg",
+                    "assets/IMG/Tiendas/Destribuidora-3.jpg",
+                ]
+            },
+            {
+                id: 2,
+                name: "Panadería El Horno Criollo",
+                category: "Panadería",
+                description: "Panadería tradicional con más de 30 años de experiencia. Ofrecemos pan fresco recién horneado, pasteles, dulces típicos y café recién hecho. El aroma a pan recién horneado nos identifica.",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Todos los días: 5:00 AM - 8:00 PM",
+                location: "Calle Bolívar, frente a la Plaza Central",
+                gallery: [
+                    "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                ]
+            },
+            {
+                id: 3,
+                name: "Carnicería San Miguel",
+                category: "Carnicería",
+                description: "En Carnicería San Miguel, conocida popularmente como La Carnicería de Niquito, ofrecemos una solución integral para tu mesa con cortes de carne frescos, pollos y una variada charcutería que destaca en nuestra vitrina. Más que una carnicería, somos tu aliado diario donde puedes encontrar desde huevos y lácteos hasta víveres esenciales como harina, pasta y artículos de higiene personal. Con la calidez de nuestra atención y la calidad de nuestros productos, garantizamos todo lo que tu hogar necesita en un solo lugar.",
+                image: "assets/IMG/Tiendas/carniceriaNiquito-1.jpg",
+                hours: "Todos los dias: 7:00 AM - 5:00 PM",
+                location: "Calle La Bomba, Sectores Unidos.",
+                gallery: [
+                    "assets/IMG/Tiendas/carniceriaNiquito-2.jpg",
+                    "assets/IMG/Tiendas/carniceriaNiquito-3.jpg",
+                ]
+            },
+            {
+                id: 4,
+                name: "Verdulería Frescas del Puerto",
+                category: "Verduras y hortalizas",
+                description: "Verduras y hortalizas frescas traídas diariamente de los campos locales. Productos orgánicos, hierbas aromáticas y una gran variedad de frutas de temporada. Calidad garantizada.",
+                image: "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Lunes a Sábado: 6:00 AM - 6:00 PM",
+                location: "Calle Sucre, esquina con Calle Miranda",
+                gallery: [
+                    "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1579113800032-c38bd7635818?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1566385101042-1a0f0c126a96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                ]
+            },
+            {
+                id: 5,
+                name: "FarmaSalud Virgen Del Valle",
+                category: "Farmacia",
+                description: "Farmasalud Virgen del Valle se consolida como el centro de bienestar integral predilecto en la zona, ofreciendo una amplia gama de soluciones que combinan servicios farmacéuticos y víveres esenciales. El establecimiento destaca por su infraestructura moderna y organizada, donde los clientes pueden encontrar desde medicamentos especializados y productos de cuidado personal hasta una sección de refrigerados y productos de primera necesidad. Con un fuerte compromiso con la salud comunitaria, Farmasalud Virgen del Valle brinda atención profesional en un ambiente impecable y climatizado, asegurando que cada visitante encuentre todo lo requerido para el cuidado del hogar en un solo lugar.",
+                image: "assets/IMG/Tiendas/farmaciaVirgen-1.jpg",
+                hours: "Lunes a Sábado: 8:00 AM - 8:00 PM ",
+                location: "Calle Principal.",
+                gallery: [
+                    "assets/IMG/Tiendas/farmaciaVirgen-2.jpg",
+                    "assets/IMG/Tiendas/farmaciaVirgen-3.jpg",
+                ]
+            },
+            {
+                id: 6,
+                name: "Inversiones Raf",
+                category: "Ferretería",
+                description: "En la Ferretería de Fernando somos tu aliado estratégico para cualquier proyecto, desde pequeñas reparaciones hasta construcciones de gran escala. Contamos con un inventario robusto que incluye herramientas eléctricas y manuales de alta calidad, materiales de construcción como láminas de techo, cemento y pegamento, así como artículos de plomería, electricidad y grifería. Además, ofrecemos soluciones para el mantenimiento del hogar como tanques de agua, bombas, mallas y cercados. Con el respaldo de marcas reconocidas y nuestra atención personalizada, en la Ferretería de Fernando encuentras la herramienta justa y el consejo experto para que tu trabajo quede bien hecho.",
+                image: "assets/IMG/Tiendas/ferreteriaFernando-1.jpg",
+                hours: "Todos los dias: 8:00 AM - 5:00 PM",
+                location: "Calle La Ceiba, Union De Las 3C.",
+                gallery: [
+                    "assets/IMG/Tiendas/ferreteriaFernando-2.jpg",
+                    "assets/IMG/Tiendas/ferreteriaFernando-3.jpg",
+                ]
+            },
+            {
+                id: 7,
+                name: "Repuestos Y Accesorios William",
+                category: "Repuestos",
+                description: "Repuestos y Accesorios Willian se posiciona como la solución integral para el parque automotor de dos ruedas en la zona, ofreciendo un amplio inventario que abarca desde componentes mecánicos críticos y lubricantes de alto rendimiento hasta accesorios estéticos y de seguridad para motociclistas. El establecimiento destaca por su operatividad ininterrumpida, brindando atención de lunes a lunes en horario corrido, lo que garantiza que tanto residentes como viajeros encuentren siempre el respaldo técnico necesario. Con una exhibición organizada que incluye repuestos originales para diversas marcas y artículos especializados para el mantenimiento preventivo",
+                image: "assets/IMG/Tiendas/repuestosWilian-1.jpg",
+                hours: "Todos los dias: Horario corrido.",
+                location: "Calle Principal.",
+                gallery: [
+                    "assets/IMG/Tiendas/repuestosWilian-2.jpg",
+                    "assets/IMG/Tiendas/repuestosWilian-3.jpg",
+                ]
+            },
+            {
+                id: 8,
+                name: "Barbería Los Evangelicos",
+                category: "Barbería y peluquería",
+                description: "Barbería Los Evangélicos se consolida como un espacio tradicional y confiable para el cuidado personal masculino en la zona. El establecimiento destaca por ofrecer servicios de barbería clásica en un ambiente de respeto y profesionalismo, atendido por personal experimentado dedicado a la estética del caballero moderno. Con un enfoque en la atención esmerada y la puntualidad.",
+                image: "assets/IMG/Tiendas/barberiaLosEvangelicos-1.jpg",
+                hours: "Lunes a Sábado: 8:00 AM - 6:00 PM | Domingos Libres.",
+                location: "Calle Principal",
+                gallery: [
+                    "assets/IMG/Tiendas/barberiaLosEvangelicos-2.jpg",
+                    "assets/IMG/Tiendas/barberiaLosEvangelicos-3.jpg",
+                ]
+            },
+            {
+                id: 9,
+                name: "Inversiones NR",
+                category: "Víveres",
+                description: "Inversiones NR, C.A. se establece como una solución práctica y confiable para el abastecimiento diario en la zona. El establecimiento ofrece una variada selección de víveres, productos de primera necesidad, artículos de limpieza y snacks, organizados para facilitar una compra rápida y eficiente. Con una atención enfocada en la utilidad y el servicio a la comunidad.",
+                image: "assets/IMG/Tiendas/inverciones-1.jpg",
+                hours: "Lunes a Sabado: 7:00 AM - 6:00 PM | Domingos libres.",
+                location: "Calle Principal.",
+                gallery: [
+                    "assets/IMG/Tiendas/inverciones-2.jpg",
+                    "assets/IMG/Tiendas/inverciones-3.jpg",
+                ]
+            },
+            {
+                id: 10,
+                name: "Peluquería Belleza Total",
+                category: "Barbería y peluquería",
+                description: "Salón de belleza unisex con servicios completos: cortes, peinados, coloración, tratamientos capilares y manicure. Productos de calidad y profesionales capacitados.",
+                image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Miércoles a Lunes: 9:00 AM - 7:00 PM | Martes cerrado",
+                location: "Plaza Bolívar, local #8",
+                gallery: [
+                    "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                ]
+            },
+            {
+                id: 11,
+                name: "Panadería El Horno Criollo II",
+                category: "Panadería",
+                description: "Panadería tradicional con más de 30 años de experiencia. Ofrecemos pan fresco recién horneado, pasteles, dulces típicos y café recién hecho. El aroma a pan recién horneado nos identifica.",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Todos los días: 5:00 AM - 8:00 PM",
+                location: "Calle Bolívar, frente a la Plaza Central",
+                gallery: [
+                    "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                ]
+            },
+            {
+                id: 12,
+                name: "Carnicería El Rincón de la Carne",
+                category: "Carnicería",
+                description: "Carnes frescas de la mejor calidad, seleccionadas cuidadosamente. Ofrecemos cortes especiales, embutidos artesanales y servicio de preparación de carnes para parrillas. Atención personalizada.",
+                image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Martes a Domingo: 6:00 AM - 5:00 PM | Lunes cerrado",
+                location: "Mercado Municipal, puesto #12",
+                gallery: [
+                    "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1628840042765-356cda07504e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1603048297172-cd5bd4c6d147?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1603048425880-8f5b9241c2bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                ]
+            },
+            {
+                id: 13,
+                name: "Verdulería La Cosecha",
+                category: "Verduras y hortalizas",
+                description: "Verduras y hortalizas frescas traídas diariamente de los campos locales. Productos orgánicos, hierbas aromáticas y una gran variedad de frutas de temporada. Calidad garantizada.",
+                image: "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Lunes a Sábado: 6:00 AM - 6:00 PM",
+                location: "Calle Sucre, esquina con Calle Miranda",
+                gallery: [
+                    "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1579113800032-c38bd7635818?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1566385101042-1a0f0c126a96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                ]
+            },
+            {
+                id: 14,
+                name: "Farmacia La Salud",
+                category: "Farmacia",
+                description: "Farmacia con servicio completo, medicamentos bajo receta y productos de cuidado personal. Contamos con servicio de entrega a domicilio y asesoramiento farmacéutico profesional.",
+                image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Lunes a Sábado: 8:00 AM - 8:00 PM | Domingos: 9:00 AM - 1:00 PM",
+                location: "Avenida Principal, edificio Centro, local #5",
+                gallery: [
+                    "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1603398938378-e54eab446dde?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                ]
+            },
+            {
+                id: 15,
+                name: "Ferretería El Constructor",
+                category: "Ferretería",
+                description: "Todo en materiales de construcción, herramientas, pinturas y artículos para el hogar. Asesoramiento técnico y servicio de corte de materiales. Proveedores de confianza para proyectos grandes y pequeños.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Lunes a Sábado: 7:30 AM - 6:30 PM",
+                location: "Carretera hacia Cumaná, km 1.5",
+                gallery: [
+                    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                ]
+            },
+            {
+                id: 16,
+                name: "Servitodo El Morro",
+                category: "Repuestos",
+                description: "Servitodo El Morro 2024 C.A. se proyecta como el aliado indispensable para el mantenimiento y desarrollo en la zona, ofreciendo un catálogo integral que combina ferretería, lubricantes y electrodomésticos. El establecimiento destaca por su infraestructura moderna y una organización por departamentos que permite a los clientes encontrar desde pinturas y herramientas de alta gama hasta soluciones para el sector náutico y automotriz.",
+                image: "assets/IMG/Tiendas/serviTodo-1.jpg",
+                hours: "Lunes a Sabado: 7:30 AM - 5:30 PM | Domingos libres.",
+                location: "Calle Principal.",
+                gallery: [
+                    "assets/IMG/Tiendas/serviTodo-2.jpg",
+                    "assets/IMG/Tiendas/serviTodo-3.jpg",
+                ]
+            },
+            // NUEVAS 5 TIENDAS (Cyber, Licorería, Papelería, Spa, Heladería)
+            {
+                id: 17,
+                name: "Cyber Náutico El Morro",
+                category: "Cyber",
+                description: "Centro de acceso a internet de alta velocidad, impresiones, escaneos y soporte técnico básico. Ideal para turistas y residentes que necesitan conexión confiable, videollamadas y trabajos de oficina. Ambiente climatizado y atención personalizada.",
+                image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Lunes a Sábado: 8:00 AM - 8:00 PM, Domingos: 9:00 AM - 2:00 PM",
+                location: "Calle Principal, local 5",
+                gallery: [
+                    "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1605773527852-c546a8584ea5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                ]
+            },
+            {
+                id: 18,
+                name: "Licorería El Galeón",
+                category: "Licorería",
+                description: "Amplia selección de vinos nacionales e importados, cervezas artesanales, licores premium y refrescos. Especialistas en rones venezolanos y whiskies. Atendido por sus propios dueños, ofrecemos asesoría para coctelería y eventos.",
+                image: "https://images.unsplash.com/photo-1516594799-5d8c7b789c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Lunes a Jueves: 10:00 AM - 9:00 PM, Viernes y Sábado: 10:00 AM - 11:00 PM, Domingos: 12:00 PM - 6:00 PM",
+                location: "Malecón, local 3, frente al mar",
+                gallery: [
+                    "https://images.unsplash.com/photo-1516594799-5d8c7b789c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1584225064786-c62a8b43d6a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                ]
+            },
+            {
+                id: 19,
+                name: "Papelería y Librería Escolar",
+                category: "Papelería",
+                description: "Todo en artículos de oficina, útiles escolares, fotocopias, encuadernación y material didáctico. Amplio surtido en cuadernos, lápices, tintas y papelería en general. También contamos con cajas de regalo y detalles personalizados.",
+                image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Lunes a Viernes: 8:00 AM - 6:00 PM, Sábados: 8:00 AM - 2:00 PM",
+                location: "Calle Sucre, a media cuadra de la plaza",
+                gallery: [
+                    "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                ]
+            },
+            {
+                id: 20,
+                name: "Spa Bahía Relax",
+                category: "Spa",
+                description: "Centro de bienestar y relajación con vista al mar. Ofrecemos masajes corporales, tratamientos faciales, manicura, pedicura y baños de vapor. Ambiente exclusivo para escapar de la rutina y reconectar con la armonía.",
+                image: "https://images.unsplash.com/photo-1540555700478-4be289fbe3cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Martes a Domingo: 9:00 AM - 7:00 PM, Lunes cerrado (solo con cita previa)",
+                location: "Urbanización Costa Azul, calle 3, quinta Serenidad",
+                gallery: [
+                    "https://images.unsplash.com/photo-1540555700478-4be289fbe3cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                ]
+            },
+            {
+                id: 21,
+                name: "Heladería El Conito Feliz",
+                category: "Heladería",
+                description: "Helados artesanales elaborados con frutas frescas de la región. Sabores tradicionales y exóticos, además de batidos, ensaladas de frutas y postres fríos. El lugar perfecto para compartir en familia y refrescarse en El Morro.",
+                image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Todos los días: 12:00 PM - 8:00 PM (hasta 10:00 PM en temporada alta)",
+                location: "Paseo Artesanal, local 12",
+                gallery: [
+                    "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1557180295-76aea20c25f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                ]
+            },
+            // NUEVA TIENDA DE CARPINTERÍA
+            {
+                id: 22,
+                name: "Carpintería y Ebanistería El Morro",
+                category: "Carpintería",
+                description: "Taller artesanal especializado en la fabricación y restauración de muebles de madera a medida. Realizamos trabajos en cedro, pino, caoba y maderas nacionales. Puertas, ventanas, cocinas integrales, closets, muebles de exterior y acabados finos para el hogar. Contamos con más de 15 años de experiencia en el rubro, ofreciendo diseños personalizados y terminaciones de alta calidad. Nuestro compromiso es brindar piezas únicas que combinan funcionalidad, estética y durabilidad, respetando los tiempos de entrega y las necesidades específicas de cada cliente.",
+                image: "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                hours: "Lunes a Viernes: 8:00 AM - 5:00 PM, Sábados: 8:00 AM - 1:00 PM",
+                location: "Calle Los Artesanos, detrás de la Plaza Central",
+                gallery: [
+                    "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1499933374294-4584851497cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "https://images.unsplash.com/photo-1547537980-a5e9e4d063bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                ]
+            }
+        ];
+
+        // Categories data (originales + 5 nuevas + carpintería)
+        const categories = [
+            { id: "all", name: "Todas", icon: "fas fa-store" },
+            { id: "víveres", name: "Víveres", icon: "fas fa-shopping-cart" },
+            { id: "panadería", name: "Panadería", icon: "fas fa-bread-slice" },
+            { id: "carnicería", name: "Carnicería", icon: "fas fa-drumstick-bite" },
+            { id: "verduras y hortalizas", name: "Verduras y hortalizas", icon: "fas fa-carrot" },
+            { id: "farmacia", name: "Farmacia", icon: "fas fa-prescription-bottle" },
+            { id: "ferretería", name: "Ferretería", icon: "fas fa-tools" },
+            { id: "repuestos", name: "Repuestos", icon: "fas fa-cog" },
+            { id: "barbería y peluquería", name: "Barbería y peluquería", icon: "fas fa-cut" },
+            // NUEVAS CATEGORÍAS
+            { id: "cyber", name: "Cyber", icon: "fas fa-laptop" },
+            { id: "licorería", name: "Licorería", icon: "fas fa-wine-bottle" },
+            { id: "papelería", name: "Papelería", icon: "fas fa-pen" },
+            { id: "spa", name: "Spa", icon: "fas fa-spa" },
+            { id: "heladería", name: "Heladería", icon: "fas fa-ice-cream" },
+            // CATEGORÍA CARPINTERÍA
+            { id: "carpintería", name: "Carpintería", icon: "fas fa-hammer" }
+        ];
+
+        // DOM Elements
+        const backButton = document.getElementById('backButton');
+        const categoryButtons = document.getElementById('categoryButtons');
+        const catalogGrid = document.getElementById('catalogGrid');
+        const detailView = document.getElementById('detailView');
+        const detailCloseBtn = document.getElementById('detailCloseBtn');
+        const detailHeaderImage = document.getElementById('detailHeaderImage');
+        const detailTitle = document.getElementById('detailTitle');
+        const detailDescription = document.getElementById('detailDescription');
+        const detailHours = document.getElementById('detailHours');
+        const detailLocation = document.getElementById('detailLocation');
+        const detailGallery = document.getElementById('detailGallery');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+
+        // State
+        let currentCategory = 'all';
+        let currentStore = null;
+        let lightboxImages = [];
+        let currentLightboxIndex = 0;
+
+        // Initialize page
+        function initializePage() {
+            initializeCategories();
+            initializeCatalog();
+            setupEventListeners();
+        }
+
+        // Initialize category buttons
+        function initializeCategories() {
+            categoryButtons.innerHTML = '';
+            
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = `category-btn ${category.id === 'all' ? 'active' : ''}`;
+                button.setAttribute('data-category', category.id);
+                
+                button.innerHTML = `
+                    <i class="${category.icon}"></i>
+                    <span>${category.name}</span>
+                `;
+                
+                button.addEventListener('click', () => filterByCategory(category.id));
+                categoryButtons.appendChild(button);
+            });
+        }
+
+        // Initialize catalog grid
+        function initializeCatalog() {
+            catalogGrid.innerHTML = '';
+            
+            // Filter stores by current category
+            let filteredStores = supplyStores;
+            if (currentCategory !== 'all') {
+                filteredStores = supplyStores.filter(store => 
+                    store.category.toLowerCase() === currentCategory
+                );
+            }
+            
+            // Display stores
+            filteredStores.forEach(store => {
+                const card = document.createElement('div');
+                card.className = 'catalog-card';
+                card.setAttribute('data-id', store.id);
+                
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${store.image}" alt="${store.name}" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${store.name}</h3>
+                        <span class="card-category">${store.category}</span>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => openDetailView(store));
+                catalogGrid.appendChild(card);
+            });
+            
+            // If no stores found
+            if (filteredStores.length === 0) {
+                const noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.style.gridColumn = '1 / -1';
+                noResults.style.textAlign = 'center';
+                noResults.style.padding = '3rem';
+                noResults.innerHTML = `
+                    <h3>No se encontraron tiendas en esta categoría</h3>
+                    <p>Intenta seleccionar otra categoría o agregar más tiendas.</p>
+                `;
+                catalogGrid.appendChild(noResults);
+            }
+        }
+
+        // Filter stores by category
+        function filterByCategory(categoryId) {
+            currentCategory = categoryId;
+            
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-category') === categoryId) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update catalog
+            initializeCatalog();
+        }
+
+        // Open detail view for a store
+        function openDetailView(store) {
+            currentStore = store;
+            
+            // Update detail view content
+            detailHeaderImage.src = store.image;
+            detailHeaderImage.alt = store.name;
+            detailTitle.textContent = store.name;
+            detailDescription.textContent = store.description;
+            detailHours.textContent = store.hours;
+            detailLocation.textContent = store.location;
+            
+            // Initialize gallery
+            initializeGallery(store.gallery);
+            
+            // Show detail view
+            detailView.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Initialize gallery
+        function initializeGallery(galleryImages) {
+            detailGallery.innerHTML = '';
+            
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.setAttribute('data-index', index);
+                
+                galleryItem.innerHTML = `
+                    <img src="${image}" alt="Imagen ${index + 1} de ${currentStore.name}" loading="lazy">
+                `;
+                
+                galleryItem.addEventListener('click', () => openLightbox(galleryImages, index));
+                detailGallery.appendChild(galleryItem);
+            });
+        }
+
+        // Open lightbox
+        function openLightbox(images, index) {
+            lightboxImages = images;
+            currentLightboxIndex = index;
+            
+            lightboxImage.src = images[index];
+            lightboxImage.alt = `Imagen ${index + 1} de ${currentStore.name}`;
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Navigate lightbox
+        function navigateLightbox(direction) {
+            if (direction === 'next') {
+                currentLightboxIndex = (currentLightboxIndex + 1) % lightboxImages.length;
+            } else {
+                currentLightboxIndex = (currentLightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+            }
+            
+            lightboxImage.src = lightboxImages[currentLightboxIndex];
+            lightboxImage.alt = `Imagen ${currentLightboxIndex + 1} de ${currentStore.name}`;
+            
+            // Add fade effect
+            lightboxImage.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImage.style.opacity = '1';
+            }, 150);
+        }
+
+        // Close detail view
+        function closeDetailView() {
+            detailView.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Back button
+            backButton.addEventListener('click', () => {
+                alert('En un escenario real, esto te llevaría de vuelta a la página principal');
+            });
+            
+            // Detail close button
+            detailCloseBtn.addEventListener('click', closeDetailView);
+            
+            // Lightbox controls
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+            lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+            
+            // Close lightbox when clicking outside image
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && detailView.classList.contains('active')) {
+                    closeDetailView();
+                }
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        navigateLightbox('prev');
+                    } else if (e.key === 'ArrowRight') {
+                        navigateLightbox('next');
+                    }
+                }
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

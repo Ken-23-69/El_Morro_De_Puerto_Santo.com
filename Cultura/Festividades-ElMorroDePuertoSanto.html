@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festividades de El Morro de Puerto Santo - Sucre, Venezuela</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="asaets/css/stylesFR.css">
+    </head>
+<body>
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showHome()">
+                 El Morro de Puerto Santo
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html#festividades" class="nav-link" onclick="showHome()">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('carnavales')">Carnavales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('semana-santa')">Semana Santa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('san-ramon')">San Ramón</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('virgen-valle')">Virgen del Valle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('dia-muertos')">Día de los Muertos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('navidad')">Navidad</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Home Section -->
+            <section id="home" class="section home-section visible">
+                <div class="hero-section">
+                    <h1>Festividades de El Morro de Puerto Santo</h1>
+                    <p>Descubre las tradiciones y celebraciones más importantes de nuestro hermoso pueblo en Sucre, Venezuela</p>
+                </div>
+
+                <div class="welcome-card">
+                    <h2 class="welcome-title">Bienvenido a nuestras tradiciones</h2>
+                    <p class="welcome-text">
+                        El Morro de Puerto Santo es un pueblo rico en tradiciones y festividades que reflejan nuestra cultura caribeña. 
+                        Cada celebración tiene su propia historia, colores y sabores que nos identifican como comunidad.
+                        Navega por nuestro menú para conocer las festividades más importantes de nuestro calendario.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Carnavales -->
+            <section id="carnavales" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Carnavales</h1>
+                </div>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p>El Morro de Puerto Santo se transforma con la llegada de carnaval, pero la gestación de esta metamorfosis arranca mucho antes. Tan pronto como las luces de diciembre se apagan, los artesanos del pueblo inician su labor en un esfuerzo que define la identidad de la fiesta. Meses de dedicación se invierten en la creación de estructuras efímeras, diseñando y construyendo las fantasías y carrozas que serán las verdaderas protagonistas del desfile.</p>
+                        <p>Lo que legalmente se establece como una celebración de dos días —el tradicional lunes y martes de Carnaval— se extiende en El Morro gracias al fervor popular. Por costumbre y demanda, la comunidad ha adoptado una celebración de tres días de recorrido, dando inicio a las festividades desde el domingo. Esto garantiza un fin de semana completo de alegría desbordada, donde la mayoría del pueblo se alista para vivir la tradición al máximo.</p>
+                        <p>El recorrido no se limita a una arteria principal; es una fiesta itinerante que abarca casi la totalidad del pueblo. Cada día, la celebración sorprende con un aire renovado, ya que la celebración tiene un punto de partida distinto. Esta rotación estratégica asegura que todos los sectores de la comunidad puedan sentir el pulso de la fiesta desde sus calles, manteniendo viva la novedad y la emoción a lo largo de los tres días.</p>
+                     </div>
+                     <div class="gallery">
+                        <h3 class="gallery-title">Galería de Carnavales</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval01.jpg')">
+                                <img src="asaets/img/Carnaval/Carnaval01.jpg" alt="Comparsa de Carnaval">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval02.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval02.webp" alt="Disfraces coloridos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval03.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval03.webp" alt="Músicos de Carnaval">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval04.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval04.webp" alt="Bailes folclóricos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval05.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval05.webp" alt="Carrozas decoradas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval06.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval06.webp" alt="Celebración familiar">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-content">
+                        <p>Al desfile se incorporan, majestuosas, las creaciones artísticas: se unen muchas carrozas elaboradas por los artesanos, cada una con su tema único y decoraciones exuberantes. A estas se suman las comparsas organizadas por sectores específicos de la comunidad, donde vecinos de todas las edades se disfrazan de manera coordinada, inyectando energía y coreografías al trayecto. La música acompaña este espectáculo, pues las carrozas cuentan con potentes equipos de sonido, manteniendo el ritmo del festejo.</p>
+                        <p>Una característica encantadora de estas carrozas es la presencia de los propios artesanos disfrazados, quienes suelen estar acompañados de "minireinitas". Estas pequeñas embajadoras de la alegría, con sus trajes relucientes, desempeñan una labor crucial: lanzar dulces a la multitud, un gesto que enloquece a los niños y sella el espíritu de la generosidad carnavalesca. Es una procesión vibrante, llena de color y sonidos.</p>   
+                        <p>Una vez que la última carroza ha completado su ruta y el desfile oficial concluye, la noche está lejos de terminar. Después que acaba el recorrido, la gente se dirige a los puntos de concentración populares para continuar la fiesta. La socialización y el baile toman el protagonismo en lugares emblemáticos como la Plazoleta, el popular Fogón, Discobar y el conocido Cocoye. Al igual que en otras festividades, y a pesar de la hora, los puestos de comida colapsan, vendiendo sin parar para alimentar a los carnavaleros hambrientos y garantizar que el ambiente se extienda hasta bien entrada la madrugada.</p>
+                    </div>
+                    <div class="gallery">
+                        <h3 class="gallery-title">Galería de Carnavales</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval07.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval07.webp" alt="Comparsa de Carnaval">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval08.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval08.webp" alt="Disfraces coloridos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval09.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval09.webp" alt="Músicos de Carnaval">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval10.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval10.webp" alt="Bailes folclóricos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval11.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval11.webp" alt="Carrozas decoradas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Carnaval/Carnaval12.webp')">
+                                <img src="asaets/img/Carnaval/Carnaval12.webp" alt="Celebración familiar">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Semana Santa -->
+            <section id="semana-santa" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Semana Santa</h1>
+                </div>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p> Todo comienza mucho antes de que llegue la primera procesión. El ambiente festivo se anuncia con una precisión de cuarenta días de antelación, marcando el inicio formal con el Miércoles de Ceniza, justo cuando los ecos del carnaval aún resuenan en las calles. Es en ese momento cuando el pueblo empieza a prepararse, limpiando sus botes y organizando sus posadas, sabiendo que pronto sus costas se llenarán de vida y visitantes en busca de sol y fe. </p>
+                        <p>Durante estos días, la vida se traslada por completo a la orilla del mar. Los puntos de encuentro se dividen en tres escenarios paradisíacos: la frescura de la zona de Los Cocos, la extensión dorada de Caña Brava y la serenidad de El Olivito. En estos lugares, la arena se convierte en el salón de invitados más grande del pueblo, donde locales y turistas comparten el espacio bajo la sombra de las palmeras, disfrutando de la brisa marina que caracteriza a esta península.</p>
+                        <p>Si prefieres la paz absoluta, los primeros días de la semana son ideales, pues la afluencia es moderada y el sonido de las olas es el protagonista. Sin embargo, a medida que se acerca el viernes y el sábado, el ambiente se transforma radicalmente. El mar se llena de color con botecitos de pesca que pasean a los curiosos y motos de agua que cortan el azul del horizonte, creando una estampa de movimiento y alegría que contagia a todo aquel que pisa la playa.</p>
+                     </div>
+                              <div class="gallery">
+                        <h3 class="gallery-title">Galería de Semana Santa</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/208315/pexels-photo-208315.jpeg')">
+                                <img src="https://images.pexels.com/photos/208315/pexels-photo-208315.jpeg" alt="Procesión de Semana Santa">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1656666/pexels-photo-1656666.jpeg')">
+                                <img src="https://images.pexels.com/photos/1656666/pexels-photo-1656666.jpeg" alt="Vía Crucis">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/372326/pexels-photo-372326.jpeg')">
+                                <img src="https://images.pexels.com/photos/372326/pexels-photo-372326.jpeg" alt="Iglesia decorada">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666071/pexels-photo-1666071.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666071/pexels-photo-1666071.jpeg" alt="Fieles en oración">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg')">
+                                <img src="https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg" alt="Palmas benditas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666073/pexels-photo-1666073.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666073/pexels-photo-1666073.jpeg" alt="Vigilia Pascual">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-content">
+                        <p>Uno de los atractivos más esperados, aunque depende de la organización de cada año, son las emocionantes carreras de botes. Es una competencia que despierta el orgullo regional, donde expertos navegantes de El Morro, Puerto Santo, Río Caribe e incluso de la Isla de Margarita se dan cita para demostrar su destreza. El rugido de los motores y el aplauso de la multitud en la orilla convierten este evento en el punto álgido de la adrenalina deportiva en la zona.</p>
+                        <p>Para quienes buscan una experiencia más privada o poseen transporte acuático, el islote frente a las costas de El Morro se convierte en el destino predilecto. Es el punto de reunión por excelencia para familias y grupos de amigos que, gracias a botes propios o de conocidos, cruzan las aguas para disfrutar de un día de playa más íntimo, rodeados de aguas cristalinas y una vista privilegiada de toda la línea costera.</p>
+                        <p> La experiencia no estaría completa sin el festín de sabores que bordea las playas. A medida que transcurre la semana, los puestos de comida se multiplican ofreciendo desde las clásicas empanadas de cazón y pinchos de mariscos, hasta antojos dulces como algodones de azúcar, ciruelas de temporada y platanitos. Al caer la noche, la fiesta se traslada a los festivales: el bar de Cocoye en Caña Brava y los eventos en El Olivito se llenan de música y brindis, siendo este último el lugar favorito para el público adulto que desea cerrar el día con una bebida refrescante y buen ritmo.</p>
+                    </div>
+                    <div class="gallery">
+                        <h3 class="gallery-title">Galería de Semana Santa</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/208315/pexels-photo-208315.jpeg')">
+                                <img src="https://images.pexels.com/photos/208315/pexels-photo-208315.jpeg" alt="Procesión de Semana Santa">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1656666/pexels-photo-1656666.jpeg')">
+                                <img src="https://images.pexels.com/photos/1656666/pexels-photo-1656666.jpeg" alt="Vía Crucis">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/372326/pexels-photo-372326.jpeg')">
+                                <img src="https://images.pexels.com/photos/372326/pexels-photo-372326.jpeg" alt="Iglesia decorada">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666071/pexels-photo-1666071.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666071/pexels-photo-1666071.jpeg" alt="Fieles en oración">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg')">
+                                <img src="https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg" alt="Palmas benditas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666073/pexels-photo-1666073.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666073/pexels-photo-1666073.jpeg" alt="Vigilia Pascual">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fiestas de San Ramón -->
+            <section id="san-ramon" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Fiestas de San Ramón</h1>
+                </div>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p>La magia comienza cada 22 de agosto, día en que el santo patrono abandona su nicho habitual en la iglesia para iniciar un peregrinaje único. San Ramón no se queda en un solo lugar; cada noche es recibido con júbilo en un sector diferente del pueblo. Esta rotación permite que cada comunidad le rinda honores, convirtiendo las calles en un pasillo de oraciones y alegría compartida. Para el turista, caminar por los sectores durante estas fechas es descubrir la hospitalidad de El Morro en su máxima expresión, entre altares decorados y el aroma a café y mar</p>
+                        <p>El clímax terrestre ocurre el 31 de agosto, cuando el santo inicia su regreso triunfal a la iglesia. La imagen es colocada en una majestuosa carroza adornada con flores, iniciando una procesión que recorre gran parte de El Morro. Es un espectáculo sobrecogedor: una marea de gente camina tras él, mientras el cielo se ilumina con una danza de cohetes y fuegos artificiales que anuncian a toda la costa que el patrono está de vuelta en casa. El sonido de las detonaciones y los cantos crean una atmósfera de fervor que eriza la piel.</p>
+                        <p>Tras la entrega del santo a la iglesia esa misma noche del 31, la devoción da paso a la celebración popular. El punto de encuentro indiscutible es la Plazoleta, donde se organiza una gran fiesta que reúne a propios y extraños. Bajo el cielo estrellado y con el eco de la procesión aún fresco, la música y el baile se apoderan del lugar. Es el momento perfecto para que el turista se integre, disfrute de la gastronomía local y comparta la alegría de un pueblo que celebra su protección y su historia.</p>
+                    </div>
+                     <div class="gallery">
+                        <h3 class="gallery-title">Galería de las Fiestas de San Ramón</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1656615/pexels-photo-1656615.jpeg')">
+                                <img src="https://images.pexels.com/photos/1656615/pexels-photo-1656615.jpeg" alt="Imagen de San Ramón">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666072/pexels-photo-1666072.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666072/pexels-photo-1666072.jpeg" alt="Procesión patronal">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg')">
+                                <img src="https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg" alt="Altar decorado">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg" alt="Fieles devotos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg')">
+                                <img src="https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg" alt="Feria patronal">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg')">
+                                <img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg" alt="Música tradicional">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-content">
+                        <p>Pero la bendición de San Ramón no se queda en tierra firme. El 1 de septiembre, el pueblo se traslada al agua para el evento más pintoresco de la festividad: el paseo marítimo. La imagen es embarcada en un peñero bellamente decorado, saliendo desde Puerto Santo y navegando frente a la "playa arriba" de El Morro. Ver la silueta del santo recortada contra el horizonte marino, custodiada por una caravana de botes de colores, es una de las postales más hermosas que el oriente venezolano puede ofrecer.</p>
+                        <p>La procesión acuática no es corta; la flota se extiende en una travesía que llega hasta el vecino pueblo de Río Caribe. Los pescadores hacen rugir sus motores y las sirenas de los botes escoltan al patrono en un gesto de hermandad entre los pueblos de la península. El recorrido de vuelta, con el sol del mediodía brillando sobre el cristalino Mar Caribe, completa una jornada de fe que bendice las aguas, pidiendo por la seguridad de quienes viven de la pesca y por la prosperidad de toda la región.</p>
+                        <p>Santo durante las fiestas de San Ramón es sumergirse en una Venezuela auténtica, donde la tradición no ha perdido su fuerza ante el paso del tiempo. Es una oportunidad para el turista de no ser solo un espectador, sino de ser parte de una comunidad que celebra la vida con la misma intensidad con la que trabaja el mar. Si tus planes de viaje coinciden con el cierre de agosto, prepárate para una experiencia donde la devoción se siente en cada ola y en cada estallido de luz en el cielo</p>
+                    </div>
+                    <div class="gallery">
+                        <h3 class="gallery-title">Galería de las Fiestas de San Ramón</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1656615/pexels-photo-1656615.jpeg')">
+                                <img src="https://images.pexels.com/photos/1656615/pexels-photo-1656615.jpeg" alt="Imagen de San Ramón">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666072/pexels-photo-1666072.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666072/pexels-photo-1666072.jpeg" alt="Procesión patronal">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg')">
+                                <img src="https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg" alt="Altar decorado">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg" alt="Fieles devotos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg')">
+                                <img src="https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg" alt="Feria patronal">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg')">
+                                <img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg" alt="Música tradicional">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Paseo de la Virgen del Valle -->
+            <section id="virgen-valle" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Paseo de la Virgen del Valle</h1>
+                </div>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p>Apenas el eco de las fiestas de San Ramón comienza a desvanecerse, El Morro de Puerto Santo se viste nuevamente de gala, esta vez con un matiz de ternura y devoción profunda. El 8 de septiembre es una fecha sagrada en todo el oriente venezolano, y aquí, en este rincón bendecido por el mar, la Virgen del Valle es recibida como la madre protectora de cada pescador. Durante todo el día, el aroma a flores frescas inunda el aire mientras los fieles se congregan en misas y rezos solemnes, rindiendo tributo a la "Vallita" en un ambiente de recogimiento que conmueve hasta al viajero más distraído.</p>
+                        <p>Sin embargo, en El Morro la fe y la alegría caminan de la mano. Al caer el sol el mismo 8 de septiembre, la solemnidad cede el paso a la celebración vibrante que caracteriza al pueblo sucrense. Los bares y locales nocturnos se llenan a su máxima capacidad, transformándose en el epicentro de un festejo donde los pobladores brindan en honor a su patrona. Es una noche de música, reencuentros y brindis, donde el turista puede experimentar la calidez genuina del lugareño, que celebra con orgullo la identidad de su tierra bajo el brillo de las estrellas caribeñas.</p>
+                       </div>
+                        <div class="gallery">
+                        <h3 class="gallery-title">Galería del Paseo de la Virgen del Valle</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg')">
+                                <img src="https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg" alt="Embarcaciones decoradas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg')">
+                                <img src="https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg" alt="Procesión marítima">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1656615/pexels-photo-1656615.jpeg')">
+                                <img src="https://images.pexels.com/photos/1656615/pexels-photo-1656615.jpeg" alt="Imagen de la Virgen">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg" alt="Fieles en el muelle">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1619320/pexels-photo-1619320.jpeg')">
+                                <img src="https://images.pexels.com/photos/1619320/pexels-photo-1619320.jpeg" alt="Pescadores devotos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1619318/pexels-photo-1619318.jpeg')">
+                                <img src="https://images.pexels.com/photos/1619318/pexels-photo-1619318.jpeg" alt="Atardecer en el golfo">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="text-content">
+                        <p>La verdadera magnitud de esta festividad se revela al día siguiente, el 9 de septiembre, con el esperado recorrido marítimo. Aunque San Ramón es el patrón oficial, el paseo por mar de la Virgen del Valle posee una influencia y una convocatoria que, para muchos, supera cualquier otro evento del año. Es un despliegue naval impresionante: cientos de embarcaciones de todos los tamaños, desde humildes peñeros hasta modernos yates, se adornan con globos y banderas para escoltar a la imagen de la Virgen sobre las aguas turquesas, creando una procesión flotante que parece no tener fin.</p>
+                        <p>Participar en este recorrido es sumergirse en un mar de emociones donde el rugido de los motores se mezcla con cantos de alabanza y el estallido de fuegos artificiales que se reflejan en el agua. Es el momento en que la devoción marinera alcanza su punto máximo, pidiendo a la Virgen abundancia en la pesca y protección en las faenas diarias. Para el visitante, presenciar esta flota masiva navegando las costas de Puerto Santo es una experiencia visual y espiritual incomparable, que marca el cierre perfecto de un ciclo de festividades que solo se pueden vivir con tal intensidad en el corazón de El Morro.</p>
+                    </div>
+                    <div class="gallery">
+                        <h3 class="gallery-title">Galería del Paseo de la Virgen del Valle</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg')">
+                                <img src="https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg" alt="Embarcaciones decoradas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg')">
+                                <img src="https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg" alt="Procesión marítima">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1656615/pexels-photo-1656615.jpeg')">
+                                <img src="https://images.pexels.com/photos/1656615/pexels-photo-1656615.jpeg" alt="Imagen de la Virgen">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg" alt="Fieles en el muelle">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1619320/pexels-photo-1619320.jpeg')">
+                                <img src="https://images.pexels.com/photos/1619320/pexels-photo-1619320.jpeg" alt="Pescadores devotos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1619318/pexels-photo-1619318.jpeg')">
+                                <img src="https://images.pexels.com/photos/1619318/pexels-photo-1619318.jpeg" alt="Atardecer en el golfo">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Día de los Muertos -->
+            <section id="dia-muertos" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Día de los Muertos</h1>
+                </div>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p>El calendario marca el 2 de noviembre, y en El Morro de Puerto Santo la atmósfera se transforma. No es un día de duelo sombrío, sino de una profunda y colorida devoción a la memoria. Para el visitante, esta fecha ofrece una ventana única a la manera en que la comunidad honra a sus seres queridos: con cariño, dedicación y una vigilia llena de luz.</p>
+                        <p>Los días previos y durante la mañana del 2, se observa una actividad inusual en el camposanto. Las familias se congregan en un acto de amor práctico: van a limpiar meticulosamente las tumbas de sus familiares. Este no es un simple mantenimiento, sino un ritual de preparación. Se retira el polvo, se repinta la lápida y se adecentan los espacios para recibir la ofrenda floral y la compañía que brindarán esa noche. Es un momento de trabajo en equipo y de compartir anécdotas sobre los que ya partieron.</p>
+                        <p>La fe y el recuerdo impulsan también una efervescencia comercial particular. En esa fecha clave, y también en los días anteriores, las calles de El Morro se llenan de vendedores de flores. Estos comerciantes no son solo locales; muchos vienen de diferentes lugares, como Río Caribe o el concurrido mercado de Carúpano, instalándose estratégicamente en varios puntos del pueblo. Sus puestos se desbordan de crisantemos, claveles y rosas, listas para adornar los nichos.</p>
+                     </div>
+                      <div class="gallery">
+                        <h3 class="gallery-title">Galería del Día de los Muertos</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos01.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos01.webp" alt="Cementerio adornado">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos02.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos02.webp" alt="Velas encendidas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos03.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos03.webp" alt="Flores para los difuntos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos04.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos04.webp" alt="Familias en oración">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos05.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos05.webp" alt="Misa campal">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos06.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos06.webp" alt="Atardecer de los recuerdos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-content">
+                        <p>El Día de los Muertos es un paréntesis sagrado. Es una jornada en la que las personas se liberan de las tareas cotidianas para recordar a sus familiares y dedicarse exclusivamente a ello. El ambiente se vuelve contemplativo; las conversaciones giran en torno a las vidas que se celebran. La mañana y la tarde son de preparación, pero la verdadera cita es al caer el sol: la gente se dedica a esperar la noche para ir a hacer compañía a sus tumbas.</p>
+                        <p>Al llegar la oscuridad, la atmósfera alcanza su punto culminante. Al caer la noche del 2 de noviembre, las personas se alistan para ir al cementerio a realizar el encendido de las velas. Este ritual es profundamente personal y está marcado por las diferentes religiones o creencias de cada familia. Cientos de pequeñas llamas se alzan sobre las tumbas, creando un espectáculo visual conmovedor: el cementerio se ilumina como un firmamento invertido, simbolizando el lazo inquebrantable entre los vivos y los que son recuerdados.</p>
+                        <p>Como en toda festividad importante de El Morro, la tradición no está completa sin el sabor local. A pesar de la solemnidad del evento, la costumbre de compartir se mantiene. Los puestos de chucherías, empanadas o tequeños se hacen presentes en los alrededores del cementerio. Y aquí, el turista podrá conocer a un personaje icónico: "la mujer de Pachico", una vendedora reconocida y querida que, año tras año, es una presencia constante en estas y otras celebraciones, asegurando que la comunidad y sus visitantes tengan siempre un aperitivo para acompañar la vigilia.</p>
+                        </div>
+                    <div class="gallery">
+                        <h3 class="gallery-title">Galería del Día de los Muertos</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos07.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos07.webp" alt="Cementerio adornado">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos08.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos08.webp" alt="Velas encendidas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos09.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos09.webp" alt="Flores para los difuntos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos10.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos10.webp" alt="Familias en oración">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos11.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos11.webp" alt="Misa campal">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('asaets/img/Día-de-Muertos/DiaDeMuertos12.webp')">
+                                <img src="asaets/img/Día-de-Muertos/DiaDeMuertos12.webp" alt="Atardecer de los recuerdos">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navidad -->
+            <section id="navidad" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Navidad</h1>
+                </div>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p>Al llegar el mes de diciembre, El Morro de Puerto Santo se viste de una calidez especial. La comunidad no espera a Nochebuena para empezar a celebrar. De hecho, el ambiente navideño se asienta firmemente desde la primera semana: ya previamente hay un arbolito de Navidad armado a principios de mes en algún punto central, marcando el inicio oficial de la temporada de alegría.</p>
+                        <p>El despliegue decorativo en El Morro es un esfuerzo comunitario que transforma el paisaje costero. En su mayoría, las personas pintan sus casas para darles un aire renovado y festivo, un lienzo fresco para recibir el nuevo año. Además, las fachadas y los balcones se iluminan con luces navideñas de colores, se adornan con aguinaldos de follaje artificial y, en un gesto de profunda fe, algunas familias, más que otras, arman su tradicional pesebre (nacimiento), recordatorio humilde del origen de la celebración.</p>
+                        <p>La antesala de la gran noche llega cargada de expectación, especialmente para los más pequeños. El 24 de diciembre se convierte en una pasarela de ilusión. Los niños lucen sus estrenos de ropa con orgullo, vistiéndose con sus mejores galas para la víspera. Sus ojos reflejan una mezcla de emoción y ansias incontrolables, pues la noche se alarga esperando la llegada de un visitante muy especial: el Niño Jesús, cargado de regalos.</p>
+                      </div>
+                       <div class="gallery">
+                        <h3 class="gallery-title">Galería de Navidad</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg" alt="Familias celebrando">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg')">
+                                <img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg" alt="Parrandas navideñas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/372326/pexels-photo-372326.jpeg')">
+                                <img src="https://images.pexels.com/photos/372326/pexels-photo-372326.jpeg" alt="Iglesia en Navidad">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg')">
+                                <img src="https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg" alt="Pesebre costero">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg')">
+                                <img src="https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg" alt="Árbol navideño">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg')">
+                                <img src="https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg" alt="Cena navideña">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-content">
+                        <p>Mientras los adultos se reúnen para la tradicional cena, el ambiente se mantiene tenso de alegría infantil. La espera culmina con la medianoche y, aunque el cansancio de la vigilia es palpable, los regalos suelen esperar pacientes bajo el árbol. Pero es al día siguiente, el 25 de diciembre, el día oficial de Navidad, cuando la magia se desata por completo.</p>
+                        <p>A primera hora de la mañana, la paz se rompe. Los niños se despiertan y corren a abrir sus regalos debajo del árbol, un estallido de papel de colores y alegría. El resto del día transcurre con normalidad, pero el significado es único: las calles de El Morro se convierten en una gran exhibición donde los niños presumen sus juguetes nuevos a sus amigos y vecinos.</p>
+                        <p>La Navidad en El Morro de Puerto Santo es, en esencia, una fiesta que se vive en la calle y en comunidad. Es el sonido de los aguinaldos, el sabor de la tradición y el brillo de las luces que se reflejan en el mar. Es la confirmación de que, incluso en la víspera de navidad, la costa de Sucre mantiene un calor humano inigualable, especialmente para aquellos turistas que buscan una celebración auténtica y llena de corazón.</p>
+                    </div>
+                    <div class="gallery">
+                        <h3 class="gallery-title">Galería de Navidad</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg')">
+                                <img src="https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg" alt="Familias celebrando">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg')">
+                                <img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg" alt="Parrandas navideñas">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/372326/pexels-photo-372326.jpeg')">
+                                <img src="https://images.pexels.com/photos/372326/pexels-photo-372326.jpeg" alt="Iglesia en Navidad">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg')">
+                                <img src="https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg" alt="Pesebre costero">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg')">
+                                <img src="https://images.pexels.com/photos/1464663/pexels-photo-1464663.jpeg" alt="Árbol navideño">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg')">
+                                <img src="https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg" alt="Cena navideña">
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Modal para galería -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Imagen ampliada">
+        </div>
+    </div>
+
+    <script src="asaets/js/scriptFR.js"></script>      
+</body>
+</html>
