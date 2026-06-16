@@ -3,7 +3,7 @@
 const institutions = [
   {
     name: "Liceo; C.E. Leonor García",
-    image: "assets/img/work/Liceo.webp",
+    image: "assets/img/work/liceo.webp",
     description: "Fundado en 1979 en el estado Sucre, el Complejo Educativo Leonor García ha sido el pilar de formación académica en la comunidad de El Morro por más de cuatro décadas. Desde sus inicios como Ciclo Básico con apenas 152 alumnos, la institución ha transformado su estructura y nombre hasta consolidarse hoy como un referente de la modalidad Media-Técnica. Su sede actual, establecida a mediados de los años 80, cuenta con una amplia extensión que alberga 15 aulas, 1 laboratorio, 5 coordinaciones, 1 departamento de evaluación, 1 biblioteca, espacios deportivos y 1 estacionamiento. Años después se construyo 1 comedor sin dotación, 4 aulas, 2 baños, 1 sala de computación y 1 aula de telemática. Dedicados al desarrollo de la juventud del pueblo. El nombre de la institución rinde un sentido tributo a su primera directora, Leonor García, quien entregó su vida en la gestión por obtener los espacios físicos que hoy disfruta la comunidad estudiantil. Anteriormente su nombre era L.N.B. El Morro,  hace aproximadamente 3 años se hizo el cambio de nombre oficial al que conocemos actualmente.",
     founded: "1979",
     students: "751",
