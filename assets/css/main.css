@@ -972,7 +972,7 @@ section .headline
 }
 
 .nav-arrow:hover {
-  background: white;
+  background: rgb(75, 218, 130);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -1205,10 +1205,11 @@ section .headline
   cursor: pointer;
   z-index: 10;
   transition: all 0.2s ease;
+  color: rgb(0, 0, 0);
 }
 
 .modal-close:hover {
-  background: white;
+  background:  rgb(69, 206, 76);
   transform: scale(1.1);
 }
 
